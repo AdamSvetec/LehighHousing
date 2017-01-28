@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 
-var config = require('./config');
+var config = require('./config')['development'];
 
 /*var connection = mysql.createConnection(
     {
