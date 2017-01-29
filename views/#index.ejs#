@@ -63,6 +63,18 @@
 .show {display:block;}
 
 
+.vis-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
     </style>
   </head>
   <body>
@@ -101,6 +113,13 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvh74ExLCdpPPcfsvN3YfxEfz4NlosASs&callback=initMap">
     </script>
   
+<input id="chk_aliens" type="checkbox" name="wpuf_post_tags[]" class="vis-hidden new-post-tags" value="Aliens" />
+<label for="chk_aliens">Aliens</label>
 
+<input id="chk_ghosts" type="checkbox" name="wpuf_post_tags[]" class="vis-hidden new-post-tags" value="Ghosts" />
+<label for="chk_ghosts">Ghosts</label>
+
+<input id="chk_monsters" type="checkbox" name="wpuf_post_tags[]" class="vis-hidden new-post-tags" value="Monsters" />
+<label for="chk_monsters">Monsters</label>
 </body>
 </HTML>
