@@ -12,6 +12,10 @@
 <script> $(document).ready(function() {
     $('.menu').dropit();
 });
+
+window.onload = function() {
+$(list).hide();
+};
 </script>
 
   <head>
@@ -77,11 +81,15 @@
 
 <div>
 <label class="switch">
-  <input type="checkbox">
+  <input type="checkbox" onclick="alertFunc1()">
   <div class="slider round"></div>
 </label>
 </div>
-
+<script>
+  function alertFunc() {
+  alert("alert");
+}
+</script>
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
     <script>
@@ -97,6 +105,25 @@
         });
       }
     </script>
+    <div id="list">
+      <table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+</table>
+    </div>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvh74ExLCdpPPcfsvN3YfxEfz4NlosASs&callback=initMap">
     </script>

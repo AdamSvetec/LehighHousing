@@ -16,3 +16,14 @@ window.onclick = function(event) {
 	}
     }
 }
+
+    function alertFunc1(){
+	if($(map).is(":visible")){
+	    $(map).hide();
+	    $(list).show();
+	} else {
+	    $(list).hide();
+	    $(map).show();
+	    
+	}
+    }
