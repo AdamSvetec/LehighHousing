@@ -71,14 +71,25 @@ $(list).hide();
   </head>
   <body>
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <button onclick="myFunction()" class="dropbtn">Bedrooms</button>
   <div id="myDropdown" class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
+    <a href="#">0-2</a>
+    <a href="#">3-4</a>
+    <a href="#">5+</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button onclick="dropDown2()" class="dropbtn">Rent Per Person</button>
+  <div id="myDropdown2" class="dropdown-content">
+    <a href="#"><500</a>
+    <a href="#">500-700</a>
+    <a href="#">700+</a>
   </div>
 </div>
 
+<div class="dropdown">
+<button onclick="clearFilter()">Clear Filer</button>
+</div>
 <div>
 <label class="switch">
   <input type="checkbox" onclick="alertFunc1()">
