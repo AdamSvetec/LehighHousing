@@ -5,28 +5,26 @@
  */
 
 var express = require('express');
+var app = express();
 var path = require('path');
-//var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var mysql = require('mysql');
-
 var config = require('./config')['development'];
-
 global.db = (global.db ? global.db : mysql.createConnection(
     {
 	host : config.database.host,
 	user : config.database.user,
 	database : config.database.name,
     }
-							    ));
+));
 //global.db.connect();
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-
-var app = express();
+var test = require('./routes/test');
 
 // view engine setup
 app.set('views', 'views');
@@ -41,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
