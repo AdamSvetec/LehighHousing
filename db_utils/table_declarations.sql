@@ -17,52 +17,44 @@ CREATE TABLE IF NOT EXISTS house (
 );
 
 CREATE TABLE IF NOT EXISTS user (
-	id INT(10) AUTO_INCREMENT PRIMARY KEY,
-	email VARCHAR(60)
+	email VARCHAR(60) PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS availability (
 	house_id INT(10) NOT NULL,
-	year YEAR NOT NULL,
+	year VARCHAR(9) NOT NULL,
 	available TINYINT(1),
+	rent INT(4),
 	PRIMARY KEY (house_id, year),
 	FOREIGN KEY (house_id) REFERENCES house (id) ON UPDATE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS rent (
-	house_id INT(10) NOT NULL,
-	year YEAR NOT NULL,
-	amount INT(5),
-	PRIMARY KEY (house_id, year),
-	FOREIGN KEY (house_id) REFERENCES house (id) ON UPDATE CASCADE	
 );
 
 CREATE TABLE IF NOT EXISTS review_house (
 	id INT(10) AUTO_INCREMENT PRIMARY KEY,
 	house_id INT(10),
-	user_id INT(10),
+	user_email VARCHAR(60),
 	message VARCHAR(500),
 	date DATETIME,
-	year_rented YEAR,
+	year_rented VARCHAR(9),
 	room_size_rating INT(1),
 	cleanliness_rating INT(1),
 	overall_rating INT(1),
 	FOREIGN KEY (house_id) REFERENCES house (id) ON UPDATE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES user (id) ON UPDATE CASCADE
+	FOREIGN KEY (user_email) REFERENCES user (email) ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS review_landlord (
 	id INT(10) AUTO_INCREMENT PRIMARY KEY,
 	landlord_id INT(10),
-	user_id INT(10),
+	user_email VARCHAR(60),
 	message VARCHAR(500),
 	date DATETIME,
-	year_rented YEAR,
-	repair_rating INT(1),
+	year_rented VARCHAR(9),
 	leniency_rating INT(1),
 	fairness_rating INT(1),
+	repair_rating INT(1),
 	FOREIGN KEY (landlord_id) REFERENCES landlord (id) ON UPDATE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES user (id) ON UPDATE CASCADE
+	FOREIGN KEY (user_email) REFERENCES user (email) ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS house_attribute (
