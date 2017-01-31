@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<HTML>
+  <head>
+  	<script src="/js/jquery-3.1.1.min.js"></script>
+    <script>
+    $(function(){
+     $('#search').on('keyup', function(e){
+       if(e.keyCode === 13) {
+         var parameters = { search: $(this).val() };
+         $.get( '/searching',parameters, function(data) {
+           $('#results').html(data);
+         });
+       };
+     });
+   });
+    </script>
+  </head>
+
+  <body>
+    <input id="search" type="search" placeholder="Search Craig's Jobs">
+    
+    <h3>Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 40.6069, lng: -75.3783};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+  </body>
+</HTML>
