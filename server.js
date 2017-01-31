@@ -14,14 +14,14 @@ var mysql = require('mysql');
 
 var config = require('./config')['development'];
 
-/*var connection = mysql.createConnection(
+global.db = (global.db ? global.db : mysql.createConnection(
     {
 	host : config.database.host,
 	user : config.database.user,
 	database : config.database.name,
     }
-);
-connection.connect();*/
+							    ));
+//global.db.connect();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
