@@ -4,9 +4,12 @@ var bathroom_cnt = 1;
 var rent_high = 700;
 var rent_low = 0;
 var year = "2016-2017";
-
+var sendData;
 function updateData(){
-  alert('bed: ' + bedroom_cnt + ' bath: ' + bathroom_cnt + ' rentLow: ' + rent_low + ' rentHigh: ' + rent_high + ' year: ' + year);
+    sendData = {"bedroom_cnt":bedroom_cnt, "bathroom_cnt":bathroom_cnt, "rent_high":rent_high, "rent_low":rent_low, "year":year};
+
+    $.get( '/filter', sendData, function(data) { INSERT CALLBACK FUNCTION HERE });
+    alert(sendData.bedroom_cnt);
 }
 
 function clearFilter(){
