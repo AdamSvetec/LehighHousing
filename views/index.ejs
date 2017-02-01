@@ -75,31 +75,28 @@ $(list).hide();
 <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Bedrooms</button>
   <div id="myDropdown" class="dropdown-content">
-   <button id="bed1" onclick="updateData(1, 'bed')">1<br>
-  <button id="bed2" onclick="updateData(2, 'bed')">2<br>
-    <button id="bed3" onclick="updateData(3, 'bed')">3<br>
-   <button id="bed4" onclick="updateData(4, 'bed')">4<br>
-     <button id="bed5" onclick="updateData(5, 'bed')">5+<br>
+   <button id="bed1" onclick="bedroom_cnt = 1;updateData()">1<br>
+  <button id="bed2" onclick="bedroom_cnt = 2;updateData();">2<br>
+   <button id="bed3" onclick="bedroom_cnt = 3;updateData()">3<br>
+   <button id="bed4" onclick="bedroom_cnt = 4;updateData()">4<br>
+     <button id="bed5" onclick="bedroom_cnt = 5;updateData()">5+<br>
   </div>
 </div>
 <div class="dropdown">
   <button onclick="myFunctionBaths()" class="dropbtn">Bathrooms</button>
     <div id="myDropdown3" class="dropdown-content">
-      <button id="bathroom1" onclick="updateData(1, 'bathroom')">1<br>
-      <button id="bathroom2" onclick="updateData(2, 'bathroom')">2<br>
-      <button id="bathroom3" onclick="updateData(3, 'bathroom')">3<br>
+      <button id="bathroom1" onclick="bathroom_cnt = 1;updateData()">1<br>
+      <button id="bathroom2" onclick="bathroom_cnt = 2;updateData()">2<br>
+      <button id="bathroom3" onclick="bathroom_cnt = 3;updateData()">3<br>
   </div>
 </div>
 <div class="dropdown">
   <button onclick="dropDown2()" class="dropbtn">Rent Per Person</button>
   <div id="myDropdown2" class="dropdown-content">
-    <button  onclick="updateData(1, 'rent')"><200<br>
-  <button  onclick="updateData(2, 'rent')">200-400<br>
-    <button onclick="updateData(3, 'rent')">400-600<br>
-   <button  onclick="updateData(4, 'rent')">600+<br>
-
-
-
+    <button  onclick="rent_low  = 0; rent_high=200; updateData()"><200<br>
+  <button  onclick="rent_low  = 200; rent_high=400; updateData()">200-400<br>
+    <button onclick="rent_low  = 400; rent_high=600; updateData()">400-600<br>
+   <button  onclick="rent_low  = 600; rent_high=100000; updateData()">600+<br>
   </div>
 </div>
 

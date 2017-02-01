@@ -1,7 +1,12 @@
 var mapStatus;
+var bedroom_cnt = 5;
+var bathroom_cnt = 1;
+var rent_high = 700;
+var rent_low = 0;
+var year = "2016-2017";
 
-function updateData(num, filter){
-  alert('creating json object with... ' + num + ' ' + filter);
+function updateData(){
+  alert('bed: ' + bedroom_cnt + ' bath: ' + bathroom_cnt + ' rentLow: ' + rent_low + ' rentHigh: ' + rent_high + ' year: ' + year);
 }
 
 function clearFilter(){
