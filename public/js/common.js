@@ -20,6 +20,10 @@ function myFunctionBaths() {
     document.getElementById("myDropdown3").classList.toggle("show");
 }
 
+function myFunctionYear() {
+    document.getElementById("myDropdown4").classList.toggle("show");
+}
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
