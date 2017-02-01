@@ -93,10 +93,25 @@ $(list).hide();
 <div class="dropdown">
   <button onclick="dropDown2()" class="dropbtn">Rent Per Person</button>
   <div id="myDropdown2" class="dropdown-content">
+
     <button  onclick="rent_low  = 0; rent_high=200; updateData()"><200<br>
   <button  onclick="rent_low  = 200; rent_high=400; updateData()">200-400<br>
     <button onclick="rent_low  = 400; rent_high=600; updateData()">400-600<br>
    <button  onclick="rent_low  = 600; rent_high=100000; updateData()">600+<br>
+   
+
+  </div>
+</div>
+<div class="dropdown">
+  <button onclick="myFunctionYear()" class="dropbtn">Year</button>
+  <div id="myDropdown4" class="dropdown-content">
+    <button  onclick="updateData(2017, 'year')">2017<br>
+  <button  onclick="updateData(2018, 'year')">2018<br>
+    <button onclick="updateData(2019, 'year')">2019<br>
+   <button  onclick="updateData(2020, 'year')">2020<br>
+
+
+
   </div>
 </div>
 
