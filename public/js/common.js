@@ -1,5 +1,5 @@
-function updateData(num){
-  alert('creating json object with... ' + num);
+function updateData(num, filter){
+  alert('creating json object with... ' + num + ' ' + filter);
 }
 
 function clearFilter(){
