@@ -1,3 +1,5 @@
+var mapStatus;
+
 function updateData(num, filter){
   alert('creating json object with... ' + num + ' ' + filter);
 }
@@ -37,9 +39,11 @@ window.onclick = function(event) {
 	if($(map).is(":visible")){
 	    $(map).hide();
 	    $(list).show();
+	    mapStatus = 'list';
 	} else {
 	    $(list).hide();
 	    $(map).show();
+	    mapStatus = 'map';
 	    
 	}
     }
