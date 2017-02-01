@@ -1,6 +1,6 @@
-function updateData(num){
-  alert('creating json object with... ' + num);
-}
+async defer
+ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvh74ExLCdpPPcfsvN3YfxEfz4NlosASs&cal\
+lb6ck=initMap">
 
 function clearFilter(){
     alert("Someone needs to code this...")
