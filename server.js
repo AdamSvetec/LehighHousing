@@ -14,14 +14,27 @@ var bodyParser = require('body-parser');
 
 var mysql = require('mysql');
 var config = require('./config')['development'];
-global.db = (global.db ? global.db : mysql.createConnection(
+global.db = mysql.createConnection(
     {
 	host : config.database.host,
 	user : config.database.user,
 	database : config.database.name,
     }
-));
-//global.db.connect();
+);
+global.db.connect(function(err){
+  if(err){
+    console.log('Error connecting to db');
+    return;
+  }
+  console.log('Connection established');
+});
+global.db.on('close', function(err) {
+  if (err) {
+    global.db = mysql.createConnection(global.db.config);
+  } else {
+    console.log('Connection closed normally.');
+  }
+});
 
 var index = require('./routes/index');
 var test = require('./routes/test');
