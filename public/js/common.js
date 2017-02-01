@@ -8,7 +8,7 @@ var sendData;
 function updateData(){
     sendData = {"bedroom_cnt":bedroom_cnt, "bathroom_cnt":bathroom_cnt, "rent_high":rent_high, "rent_low":rent_low, "year":year};
 
-    $.get( '/filter', sendData, function(data) { alert("Success!"});
+    $.get( '/filter', sendData, function(data) { alert("Success!") });
     
 }
 
