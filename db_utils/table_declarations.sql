@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS landlord (
 CREATE TABLE IF NOT EXISTS house (
 	id INT(10) AUTO_INCREMENT PRIMARY KEY,
 	address VARCHAR(60),
-	lat NUMERIC(4,8),
-	long NUMERIC(4,8),
+	lat NUMERIC(12,8),
+	lng NUMERIC(12,8),
 	landlord_id INT(10),
 	bedroom_cnt INT(2),
 	bathroom_cnt INT(2),
