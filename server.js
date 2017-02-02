@@ -37,7 +37,6 @@ global.db.on('close', function(err) {
 });
 
 var index = require('./routes/index');
-var test = require('./routes/test');
 
 // view engine setup
 app.set('views', 'views');
@@ -52,7 +51,6 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use('/', index);
-app.use('/', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
