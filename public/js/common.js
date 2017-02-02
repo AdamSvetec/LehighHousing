@@ -6,15 +6,14 @@ var rent_low = 0;
 var year = "2016-2017";
 
 var map;
-var markers = [];
-var info_contents = [];
+var marker_holders = [];
+var InfoWindow;
 
 function updateData(){
-	for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(null);
+	for (var i = 0; i < marker_holders.length; i++) {
+          marker_holders[i].marker.setMap(null);
     }
-    markers = [];
-    info_contents = [];
+    marker_holders = [];
 	var filter = {"bedroom_cnt":bedroom_cnt, "bathroom_cnt":bathroom_cnt, "rent_high":rent_high, "rent_low":rent_low, "year":year};
 	$.get( '/filter', filter, function(rows) { 
 		for(i=0; i < rows.length; i++){
@@ -24,28 +23,37 @@ function updateData(){
 }
 
 function addMarker(row) {
+	var marker_holder = {};
 	// Building marker
 	var location = {lat:row.lat,lng:row.lng};
-	var marker = new google.maps.Marker({
+	marker_holder.marker = new google.maps.Marker({
 		position: location,
 		map: map
 	});
-	markers.push(marker);
 
 	// Info Window Content
-	var infoWindowContent = '<div class="info_content">' +
+	marker_holder.infoWindowContent = '<div class="info_content">' +
 	'<h3><a href="house?id='+row.id+'" target="_blank">'+row.address+'</a></h3>' +
+	'<div>Rent: '+row.rent+'</div>' +
+	'<div>House: <span id="starsHouse" style="display: inline-block"></span></div>' +
+	'<div>Landlord: <span id="starsLandlord" style="display: inline-block"></span></div>' +
 	'</div>';
-	var infoWindow = new google.maps.InfoWindow();
-	var marker_index = markers.length - 1;
+	marker_holder.house_rating = row.house_rating;
+	marker_holder.landlord_rating = row.landlord_rating;
+	marker_holders.push(marker_holder);
+	var index = marker_holders.length - 1;
+	infoWindow = new google.maps.InfoWindow();
     //Add info window to each marker have an info window    
-    google.maps.event.addListener(marker, 'click', (function(marker, marker_index) {
+    google.maps.event.addListener(marker_holder.marker, 'click', (function(marker, index) {
         return function() {
-        	infoWindow.setContent(info_contents[marker_index]);
+        	if(infoWindow){
+        		infoWindow.close();
+        	}
+        	infoWindow.setContent(marker_holders[index].infoWindowContent);
         	infoWindow.open(map, marker);
+        	$(function () { $("#starsHouse").rateYo({ rating: marker_holders[index].house_rating, starWidth: "15px" }); $("#starsLandlord").rateYo({ rating: marker_holders[index].landlord_rating, starWidth: "15px" }); });
         }
-	})(marker, marker_index));
-	info_contents.push(infoWindowContent);
+	})(marker_holder.marker, index));	
 }
 
 function initMap() {
