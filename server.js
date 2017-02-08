@@ -6,33 +6,41 @@
 
 var express = require('express');
 var app = express();
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
+
+var path = require('path'); //utilities for working with file and directory paths
+var favicon = require('serve-favicon'); //for serving favicon
+var http_logger = require('morgan'); //http logger
+const winston = require('winston'); //standard logger
+winston.level = process.env.LOG_LEVEL || 'silly';
+
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var debug = require('debug')('lehighhousing:server');
+var http = require('http');
+
 var mysql = require('mysql');
-var config = require('./config')['development'];
+var config = require('./config')[app.get('env')]; //gets NODE_ENV environmental variable
 global.db = mysql.createConnection(
-    {
-	host : config.database.host,
+  {
+  host : config.database.host,
 	user : config.database.user,
 	database : config.database.name,
-    }
+  }
 );
 global.db.connect(function(err){
   if(err){
-    console.log('Error connecting to db');
+    winston.log('error','Error connecting to db');
     return;
   }
-  console.log('Connection established');
+  winston.log('info','Connection established');
 });
 global.db.on('close', function(err) {
   if (err) {
+    winston.log('warn','Connection closed unexpectedly, reopening');
     global.db = mysql.createConnection(global.db.config);
   } else {
-    console.log('Connection closed normally.');
+    winston.log('info','Connection closed normally.');
   }
 });
 
@@ -45,7 +53,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(http_logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -71,9 +79,6 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-var debug = require('debug')('lehighhousing:server');
-var http = require('http');
 
 /**
  * Get port from environment and store in Express.
