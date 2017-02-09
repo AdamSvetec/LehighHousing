@@ -21,20 +21,15 @@ var http = require('http');
 
 var mysql = require('mysql');
 var config = require('./config')[app.get('env')]; //gets NODE_ENV environmental variable
-global.db = mysql.createConnection(
+global.db = mysql.createPool(
   {
+  connectionLimit : 20, //Might need to change?
   host : config.database.host,
 	user : config.database.user,
 	database : config.database.name,
+  multipleStatements : true
   }
 );
-global.db.connect(function(err){
-  if(err){
-    winston.log('error','Error connecting to db');
-    return;
-  }
-  winston.log('info','Connection established');
-});
 global.db.on('close', function(err) {
   if (err) {
     winston.log('warn','Connection closed unexpectedly, reopening');
