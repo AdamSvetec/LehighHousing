@@ -41,6 +41,7 @@ global.db.on('close', function(err) {
 
 var index = require('./routes/index');
 var house = require('./routes/house');
+var landlord = require('./routes/landlord');
 
 // view engine setup
 app.set('views', 'views');
@@ -56,6 +57,7 @@ app.use(express.static('public'));
 
 app.use('/', index);
 app.use('/', house);
+app.use('/', landlord);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
