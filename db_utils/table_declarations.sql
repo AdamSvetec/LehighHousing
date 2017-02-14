@@ -41,6 +41,8 @@ CREATE TABLE IF NOT EXISTS review_house (
 	room_size_rating INT(1),
 	cleanliness_rating INT(1),
 	overall_rating INT(1),
+	user_confirmed TINYINT(1),
+	system_confirmed TINYINT(1),
 	FOREIGN KEY (house_id) REFERENCES house (id) ON UPDATE CASCADE,
 	FOREIGN KEY (user_email) REFERENCES user (email) ON UPDATE CASCADE
 );
@@ -55,6 +57,8 @@ CREATE TABLE IF NOT EXISTS review_landlord (
 	leniency_rating INT(1),
 	fairness_rating INT(1),
 	repair_rating INT(1),
+	user_confirmed TINYINT(1),
+	system_confirmed TINYINT(1),
 	FOREIGN KEY (landlord_id) REFERENCES landlord (id) ON UPDATE CASCADE,
 	FOREIGN KEY (user_email) REFERENCES user (email) ON UPDATE CASCADE
 );
