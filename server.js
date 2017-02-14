@@ -41,6 +41,7 @@ global.db.on('close', function(err) {
 
 var index = require('./routes/index');
 var house = require('./routes/house');
+var review = require('./routes/review');
 
 // view engine setup
 app.set('views', 'views');
@@ -56,23 +57,24 @@ app.use(express.static('public'));
 
 app.use('/', index);
 app.use('/', house);
+app.use('/', review);
 
-// catch 404 and forward to error handler
+// catch 404 and forward to message display
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-// error handler
+// message display
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
+    // render the message page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('message');
 });
 
 /**
