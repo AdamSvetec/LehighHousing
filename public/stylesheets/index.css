@@ -22,9 +22,14 @@ a {
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
-/* Dropdown Button */
+/* Dropdown Button
+nice blue = #124E78
+nice cream = #F0F0C9
+nice redish color = #D74E09
+
+*/
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #623100;
     color: white;
     padding: 16px;
     font-size: 16px;

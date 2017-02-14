@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+	<script src="/js/jquery-3.1.1.min.js"></script>
+	<script src="/js/common.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet"  href="/stylesheets/index.css">
+
+	<!-- Star rating libraries -->
+	<script src="/js/jquery.rateyo.min.js"></script>
+  	<link rel="stylesheet" href="/stylesheets/jquery.rateyo.min.css">
+  	
+  	<title><%= address %></title>
+</head>
+
+<body>
+	<h1>House</h1>
+	<h2>Address: <%= address %></h2>
+	<h2>Bedrooms: <%= bedroom_cnt %></h2>
+	<h2>Bathrooms: <%= bathroom_cnt %></h2>
+	<h2>Parking Spots: <%= parking_spot_cnt %></h2>
+	<h2>Rent: $<%= rent %></h2>
+	<h2>Room Size: <%= room_size_rating %></h2>
+	<h2>Cleanliness: <%= cleanliness_rating %></h2>
+	<h2>Overall Rating: <%= overall_rating %></h2>
+
+	<h1>House Amenities</h1>
+	<% for( i=0; i < attributes.length; i++) { %>
+		<h2> <%= attributes[i].name %> <h2>
+	<% } %>
+
+	<h1>Landlord</h1>
+	<h2>Name: <%= name %></h2>
+	<% if(phone_num != "NULL"){ %> <h2>Phone Number: <%= phone_num %></h2> <% } %>
+	<% if(email != "NULL"){ %> <h2>Email: <%= email %></h2> <% } %>
+	<% if(website != "NULL"){ %> <h2>Website: <%= website %></h2> <% } %>
+	<h2>Leniency: <%= leniency_rating %></h2>
+	<h2>Fairness: <%= fairness_rating %></h2>
+	<h2>Repairs: <%= repair_rating %></h2>
+
+	<h1>Rent Prices</h1>
+	<% for(i = 0; i < prices.length; i++){ %>
+		<h2>Year: <%= prices[i].year %></h2>
+		<h2>Rent: <%= prices[i].rent %></h2>
+		<h2>Available: <%= prices[i].available ? "Yes" : "No" %></h2>
+	<% } %>
+</body>
+</HTML>

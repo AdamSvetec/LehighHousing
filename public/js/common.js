@@ -6,29 +6,55 @@ var rent_low = 0;
 var year = "2016-2017";
 
 var map;
-var markers = [];
+var marker_holders = [];
+var InfoWindow;
 
 function updateData(){
-	for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(null);
+	for (var i = 0; i < marker_holders.length; i++) {
+          marker_holders[i].marker.setMap(null);
     }
-    markers = [];
+    marker_holders = [];
 	var filter = {"bedroom_cnt":bedroom_cnt, "bathroom_cnt":bathroom_cnt, "rent_high":rent_high, "rent_low":rent_low, "year":year};
 	$.get( '/filter', filter, function(rows) { 
 		for(i=0; i < rows.length; i++){
-			var location = {lat:rows[i].lat,lng:rows[i].lng};
-			addMarker(location);
+			addMarker(rows[i]);
 		}
 	});
 }
 
-function addMarker(location) {
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });
-        markers.push(marker);
-      }
+function addMarker(row) {
+	var marker_holder = {};
+	// Building marker
+	var location = {lat:row.lat,lng:row.lng};
+	marker_holder.marker = new google.maps.Marker({
+		position: location,
+		map: map
+	});
+
+	// Info Window Content
+	marker_holder.infoWindowContent = '<div class="info_content">' +
+	'<h3><a href="house?id='+row.id+'&year='+year+'" target="_blank">'+row.address+'</a></h3>' +
+	'<div>Rent: '+row.rent+'</div>' +
+	'<div>House: <span id="starsHouse" style="display: inline-block"></span></div>' +
+	'<div>Landlord: <span id="starsLandlord" style="display: inline-block"></span></div>' +
+	'</div>';
+	marker_holder.house_rating = row.house_rating;
+	marker_holder.landlord_rating = row.landlord_rating;
+	marker_holders.push(marker_holder);
+	var index = marker_holders.length - 1;
+	infoWindow = new google.maps.InfoWindow();
+    //Add info window to each marker have an info window    
+    google.maps.event.addListener(marker_holder.marker, 'click', (function(marker, index) {
+        return function() {
+        	if(infoWindow){
+        		infoWindow.close();
+        	}
+        	infoWindow.setContent(marker_holders[index].infoWindowContent);
+        	infoWindow.open(map, marker);
+        	$(function () { $("#starsHouse").rateYo({ rating: marker_holders[index].house_rating, starWidth: "15px" }); $("#starsLandlord").rateYo({ rating: marker_holders[index].landlord_rating, starWidth: "15px" }); });
+        }
+	})(marker_holder.marker, index));	
+}
 
 function initMap() {
 	var lehigh_loc = {lat: 40.6069, lng: -75.3783};
