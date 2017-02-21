@@ -1,0 +1,54 @@
+{
+    "_id": ObjectId("580100f4da893943d393e901"),
+    "name": "Jim Fiore",
+    "phone_num": "123-456-7890",
+    "email": "jim.fiore@gmail.com",
+    "website": null,
+    "reviews": [ {
+	"email": "a@a.com",
+	"message": "Never around",
+	"date": {$date:"2016-11-20T23:32:18Z"},
+	"year_rented": "2016-2017",
+	"leniency_rating": 4,
+	"fairness_rating": 2,
+	"repair_rating": 1,
+	"user_confirmed": true,
+	"system_confirmed": true
+    } ]
+},
+{
+    "_id": ObjectId("580100f4da893943d393e902"),
+    "name": "Lewis",
+    "phone_num": "123-456-7890",
+    "email": "lewis@gmail.com",
+    "website": null,
+    "reviews": [ {
+	"email": "b@b.com",
+	"message": "The worst",
+	"date": {$date:"2016-11-20T23:32:18Z"},
+	"year_rented": "2016-2017",
+	"leniency_rating": 1,
+	"fairness_rating": 1,
+	"repair_rating": 2,
+	"user_confirmed": true,
+	"system_confirmed": true
+    } ]
+},
+{
+    "_id": ObjectId("580100f4da893943d393e903"),
+    "name": "Ida",
+    "phone_num": "123-456-7890",
+    "email": "ida@gmail.com",
+    "website": "ida.com",
+    "reviews": [ {
+	"email": "c@c.com",
+	"message": "The worst",
+	"date": {$date:"2016-11-20T23:32:18Z"},
+	"year_rented": "2016-2017",
+	"leniency_rating": 3,
+	"fairness_rating": 5,
+	"repair_rating": 4,
+	"user_confirmed": true,
+	"system_confirmed": true
+    } ]
+}

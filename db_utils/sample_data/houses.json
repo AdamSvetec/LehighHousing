@@ -1,0 +1,102 @@
+{
+    "address": "228 East Fifth Street",
+    "lat": 40.6094596,
+    "lng": -75.374617,
+    "landlord_id": ObjectId("580100f4da893943d393e901"),
+    "bedroom_cnt": 5,
+    "bathroom_cnt": 2,
+    "parking_spot_cnt": 0,
+    "availability": [ {
+	"year": "2015-2016",
+	"available": false,
+	"rent": 525
+    },{
+	"year": "2016-2017",
+	"available": false,
+	"rent": 560
+    },{
+	"year": "2017-2018",
+	"available": true,
+	"rent": 600
+    }],
+    "reviews": [ {
+	"email": "a@a.com",
+	"message": "Disgusting",
+	"date": {$date:"2016-11-20T23:32:18Z"},
+	"year_rented": "2015-2016",
+	"room_size_rating": 4,
+	"cleanliness_rating": 2,
+	"overall_rating": 2,
+	"user_confirmed": true,
+	"system_confirmed": true
+    } ],
+    "attributes": [ { "name": "Backyard" }, { "name": "Oil Heating" } ]
+},
+{
+    "address": "541 Hillside Avenue",
+    "lat": 40.608341,
+    "lng": -75.371203,
+    "landlord_id": ObjectId("580100f4da893943d393e903"),
+    "bedroom_cnt": 5,
+    "bathroom_cnt": 2,
+    "parking_spot_cnt": 0,
+    "availability": [ {
+	"year": "2015-2016",
+	"available": false,
+	"rent": 520
+    },{
+	"year": "2016-2017",
+	"available": false,
+	"rent": 560
+    },{
+	"year": "2017-2018",
+	"available": true,
+	"rent": 600
+    }],
+    "reviews": [ {
+	"email": "b@b.com",
+	"message": "Fantastic House",
+	"date": {$date:"2016-11-20T23:32:18Z"},
+	"year_rented": "2016-2017",
+	"room_size_rating": 3,
+	"cleanliness_rating": 4,
+	"overall_rating": 5,
+	"user_confirmed": true,
+	"system_confirmed": true
+    } ],
+    "attributes": [ { "name": "Backyard" }, { "name": "Gas Heating" }, { "name": "Basement" } ]
+},
+{
+    "address": "513 East Fifth Street",
+    "lat": 40.6095813,
+    "lng": -75.3713303,
+    "landlord_id": ObjectId("580100f4da893943d393e902"),
+    "bedroom_cnt": 5,
+    "bathroom_cnt": 2,
+    "parking_spot_cnt": 0,
+    "availability": [ {
+	"year": "2015-2016",
+	"available": false,
+	"rent": 560
+    },{
+	"year": "2016-2017",
+	"available": false,
+	"rent": 600
+    },{
+	"year": "2017-2018",
+	"available": true,
+	"rent": 700
+    }],
+    "reviews": [ {
+	"email": "c@c.com",
+	"message": "Decent house, but Lewis is the worst",
+	"date": {$date:"2016-11-20T23:32:18Z"},
+	"year_rented": "2016-2017",
+	"room_size_rating": 2,
+	"cleanliness_rating": 2,
+	"overall_rating": 2,
+	"user_confirmed": true,
+	"system_confirmed": true
+    } ],
+    "attributes": [ { "name": "Backyard" }, { "name": "Gas Heating" }, { "name": "Basement" } ]
+}
