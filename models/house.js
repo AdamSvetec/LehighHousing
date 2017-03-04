@@ -16,7 +16,6 @@ var houseSchema = new Schema({
     rent: Number 
   } ],
   reviews: [ {
-    _id: Schema.Types.ObjectId,
     email: String,
     message: String,
     date: Date,
@@ -30,6 +29,6 @@ var houseSchema = new Schema({
   attributes: [ { name: String } ]
 });
 
-var house = mongoose.model('house', houseSchema);
+var house = mongoose.model('House', houseSchema, 'house');
 
 module.exports = house;

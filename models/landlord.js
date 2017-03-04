@@ -8,7 +8,6 @@ var landlordSchema = new Schema({
   email: String,
   website: String,
   reviews: [ {
-  	_id: Schema.Types.ObjectId,
   	email: String,
   	message: String,
   	date: Date,
@@ -21,6 +20,6 @@ var landlordSchema = new Schema({
   } ]
 });
 
-var landlord = mongoose.model('landlord', landlordSchema);
+var landlord = mongoose.model('Landlord', landlordSchema, 'landlord');
 
 module.exports = landlord;
