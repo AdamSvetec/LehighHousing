@@ -11,17 +11,25 @@
 	<script src="/js/jquery.rateyo.min.js"></script>
   	<link rel="stylesheet" href="/stylesheets/jquery.rateyo.min.css">
   	
-  	<title><%= name %></title>
+  	<title><%= landlord.name %></title>
 </head>
 <body>
 	<h1>Landlord</h1>
-	<h2>Name: <%= name %></h2>
-	<% if(phone_num != "NULL"){ %> <h2>Phone Number: <%= phone_num %></h2> <% } %>
-	<% if(email != "NULL"){ %> <h2>Email: <%= email %></h2> <% } %>
-	<% if(website != "NULL"){ %> <h2>Website: <%= website %></h2> <% } %>
-	<h2>Leniency: <%= leniency_rating %></h2>
-	<h2>Fairness: <%= fairness_rating %></h2>
-	<h2>Repairs: <%= repair_rating %></h2>
+	<h2>Name: <%= landlord.name %></h2>
+	<% if(landlord.phone_num){ %> <h2>Phone Number: <%= landlord.phone_num %></h2> <% } %>
+	<% if(landlord.email){ %> <h2>Email: <%= landlord.email %></h2> <% } %>
+	<% if(landlord.website){ %> <h2>Website: <%= landlord.website %></h2> <% } %>
+	<% var leniency_total=0,fairness_total=0,repairs_total=0; 
+		landlord.reviews.forEach(function (review) { 
+			leniency_total+=review.leniency_rating; 
+			fairness_total+=review.fairness_rating; 
+			repairs_total+=review.repair_rating; 
+		}); 
+	%>
+
+	<h2>Leniency: <%= leniency_total/landlord.reviews.length %> </h2>
+	<h2>Fairness: <%= fairness_total/landlord.reviews.length %> </h2>
+	<h2>Repairs: <%= repairs_total/landlord.reviews.length %></h2>
 
 	<h1>Houses:</h1>
 	<% for(i=0; i < houses.length; i++){ %>
