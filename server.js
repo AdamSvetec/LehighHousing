@@ -19,25 +19,9 @@ var bodyParser = require('body-parser');
 var debug = require('debug')('lehighhousing:server');
 var http = require('http');
 
-var mysql = require('mysql');
+var mongoose = require('mongoose');
 var config = require('./config')[app.get('env')]; //gets NODE_ENV environmental variable
-global.db = mysql.createPool(
-  {
-  connectionLimit : 20, //Might need to change?
-  host : config.database.host,
-	user : config.database.user,
-	database : config.database.name,
-  multipleStatements : true
-  }
-);
-global.db.on('close', function(err) {
-  if (err) {
-    winston.log('warn','Connection closed unexpectedly, reopening');
-    global.db = mysql.createConnection(global.db.config);
-  } else {
-    winston.log('info','Connection closed normally.');
-  }
-});
+global.db = mongoose.connect('mongodb://'+config.database.user+':'+config.database.password+'@'+config.database.host+':27017/'+config.database.name);
 
 var index = require('./routes/index');
 var house = require('./routes/house');
