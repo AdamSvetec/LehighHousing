@@ -2,20 +2,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var houseReviewSchema = new Schema({
-  email: String,
-  message: String,
-  date: Date,
-  year_rented: String,
+  email: {type: String, trim: true, required: true},
+  message: {type: String, trim: true, required: true},
+  date: { type: Date, default: Date.now },
+  year_rented: { type: String, trim: true, match: [/^(19|20)\d{2}\-(19|20)\d{2}$/, "Year needs to be in xxxx-xxxx format"]},
   room_size_rating: Number,
   cleanliness_rating: Number,
   overall_rating: Number,
-  user_confirmed: Boolean,
-  system_confirmed: Boolean
+  user_confirmed: {type: Boolean, default: false},
+  system_confirmed: {type: Boolean, default: false}
 });
 
 var houseSchema = new Schema({
   _id: Schema.Types.ObjectId,
-  address: String,
+  address: {type: String, trim: true},
   lat: Number,
   lng: Number,
   landlord_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Landlord'},
@@ -26,7 +26,7 @@ var houseSchema = new Schema({
   avg_cleanliness_rating: Number,
   avg_overall_rating: Number,
   availability: [ {
-    year: String,
+    year: { type: String, trim: true, match: [/^(19|20)\d{2}\-(19|20)\d{2}$/, "Year needs to be in xxxx-xxxx format"]},
     available: Boolean,
     rent: Number 
   } ],
@@ -34,9 +34,9 @@ var houseSchema = new Schema({
   attributes: [ { name: String } ]
 });
 
-/* Update rating averages
-  -Would prob be better to cache this? */
-houseSchema.post('init', function (next) {
+
+/* Update rating averages */
+houseSchema.pre('save', function (next) {
   var room_size_total=0, cleanliness_total=0, overall_total=0; 
   this.reviews.forEach(function (review) { 
     room_size_total+=review.room_size_rating; 
@@ -46,6 +46,7 @@ houseSchema.post('init', function (next) {
   this.avg_room_size_rating = this.reviews.length > 0 ? room_size_total / this.reviews.length : 0;
   this.avg_cleanliness_rating = this.reviews.length > 0 ? cleanliness_total / this.reviews.length : 0;
   this.avg_overall_rating = this.reviews.length > 0 ? overall_total / this.reviews.length : 0;
+  next();
 });
 
 var house = mongoose.model('House', houseSchema, 'house');

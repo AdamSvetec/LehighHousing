@@ -47,7 +47,6 @@ router.post('/house/:house_id/review', function(req, res, next) {
   //Error and submission rules check
   //TODO
   var review  = { email: req.body.email, message: req.body.message, date: new Date(), year_rented: req.body.year, room_size_rating: req.body['Room Size'], cleanliness_rating: req.body.Cleanliness, overall_rating: req.body['Overall Rating'], user_confirmed: 0, system_confirmed: 0};
-  var review_id;
   
   House.findOne({ '_id': req.params.house_id }, function(err, house){
     if(err) { 
@@ -58,7 +57,12 @@ router.post('/house/:house_id/review', function(req, res, next) {
       next(); 
     }
     house.reviews.push(review);
-    house.save();
+    house.save(function(err){
+      if(err){
+        winston.log('error',err);
+        next(err);
+      }
+    });
     let mailOptions = {
       from: '"Lehigh U Housing" <lehighuhousing@gmail.com>', // sender address
       to: req.body.email, // list of receivers
@@ -95,7 +99,12 @@ router.get('/house/:house_id/review/confirm', function(req, res, next) {
       next(); 
     }
     house.reviews.find( review => review.email == req.query.email).user_confirmed = true;
-    house.save();
+    house.save(function(err){
+      if(err){
+        winston.log('error',err);
+        next(err);
+      }
+    });
     next({message: "Thank you for confirming your review", status: 200});
   });
 });

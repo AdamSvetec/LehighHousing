@@ -55,7 +55,12 @@ router.post('/landlord/:landlord_id/review', function(req, res, next) {
       next(); 
     }
     landlord.reviews.push(review);
-    landlord.save();
+    landlord.save(function(err){
+      if(err){
+        winston.log('error',err);
+        next(err);
+      }
+    });
     let mailOptions = {
       from: '"Lehigh U Housing" <lehighuhousing@gmail.com>', // sender address
       to: req.body.email, // list of receivers
@@ -92,7 +97,12 @@ router.get('/landlord/:landlord_id/review/confirm', function(req, res, next) {
       next(); 
     }
     landlord.reviews.find( review => review.email == req.query.email).user_confirmed = true;
-    landlord.save();
+    landlord.save(function(err){
+      if(err){
+        winston.log('error',err);
+        next(err);
+      }
+    });
     next({message: "Thank you for confirming your review", status: 200});
   });
 });
