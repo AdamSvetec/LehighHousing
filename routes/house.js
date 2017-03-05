@@ -5,8 +5,8 @@ var Landlord = require('../models/landlord');
 var House = require('../models/house');
 
 /* GET home page. */
-router.get('/house', function(req, res, next) {
-	House.findOne({ '_id': req.query.id }, function(err, house){
+router.get('/house/:house_id', function(req, res, next) {
+	House.findOne({ '_id': req.params.house_id }, function(err, house){
     if(err){
       winston.log('error',err);
       next(err);

@@ -33,7 +33,7 @@ function addMarker(row) {
 
 	// Info Window Content
 	marker_holder.infoWindowContent = '<div class="info_content">' +
-	'<h3><a href="house?id='+row._id+'&year='+year+'" target="_blank">'+row.address+'</a></h3>' +
+	'<h3><a href="house/'+row._id+'?year='+year+'" target="_blank">'+row.address+'</a></h3>' +
 	'<div>Rent: '+row.availability.find( availability => availability.year == "2017-2018").rent+'</div>' +
 	'<div><span id="starsHouse" style="display: inline-block"></span></div>' +
 	'</div>';
