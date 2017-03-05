@@ -33,13 +33,13 @@ function addMarker(row) {
 
 	// Info Window Content
 	marker_holder.infoWindowContent = '<div class="info_content">' +
-	'<h3><a href="house?id='+row.id+'&year='+year+'" target="_blank">'+row.address+'</a></h3>' +
-	'<div>Rent: '+row.rent+'</div>' +
+	'<h3><a href="house?id='+row._id+'&year='+year+'" target="_blank">'+row.address+'</a></h3>' +
+	'<div>Rent: '+'TODO'/*row.rent*/+'</div>' +
 	'<div>House: <span id="starsHouse" style="display: inline-block"></span></div>' +
 	'<div>Landlord: <span id="starsLandlord" style="display: inline-block"></span></div>' +
 	'</div>';
-	marker_holder.house_rating = row.house_rating;
-	marker_holder.landlord_rating = row.landlord_rating;
+	//marker_holder.house_rating = row.house_rating;
+	//marker_holder.landlord_rating = row.landlord_rating;
 	marker_holders.push(marker_holder);
 	var index = marker_holders.length - 1;
 	infoWindow = new google.maps.InfoWindow();
@@ -51,7 +51,7 @@ function addMarker(row) {
         	}
         	infoWindow.setContent(marker_holders[index].infoWindowContent);
         	infoWindow.open(map, marker);
-        	$(function () { $("#starsHouse").rateYo({ rating: marker_holders[index].house_rating, starWidth: "15px" }); $("#starsLandlord").rateYo({ rating: marker_holders[index].landlord_rating, starWidth: "15px" }); });
+        	$(function () { $("#starsHouse").rateYo({ rating: 1/*marker_holders[index].house_rating*/, starWidth: "15px" }); $("#starsLandlord").rateYo({ rating: 1/*marker_holders[index].landlord_rating*/, starWidth: "15px" }); });
         }
 	})(marker_holder.marker, index));	
 }
