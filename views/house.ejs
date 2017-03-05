@@ -11,39 +11,55 @@
 	<script src="/js/jquery.rateyo.min.js"></script>
   	<link rel="stylesheet" href="/stylesheets/jquery.rateyo.min.css">
   	
-  	<title><%= address %></title>
+  	<title><%= house.address %></title>
 </head>
 
 <body>
+	<!-- need a better way to do this, put in model? -->
+	<% var room_size_total=0,cleanliness_total=0,overall_total=0; 
+		house.reviews.forEach(function (review) { 
+			room_size_total+=review.room_size_rating; 
+			cleanliness_total+=review.cleanliness_rating; 
+			overall_total+=review.overall_rating; 
+		}); 
+	%>
 	<h1>House</h1>
-	<h2>Address: <%= address %></h2>
-	<h2>Bedrooms: <%= bedroom_cnt %></h2>
-	<h2>Bathrooms: <%= bathroom_cnt %></h2>
-	<h2>Parking Spots: <%= parking_spot_cnt %></h2>
-	<h2>Rent: $<%= rent %></h2>
-	<h2>Room Size: <%= room_size_rating %></h2>
-	<h2>Cleanliness: <%= cleanliness_rating %></h2>
-	<h2>Overall Rating: <%= overall_rating %></h2>
+	<h2>Address: <%= house.address %></h2>
+	<h2>Bedrooms: <%= house.bedroom_cnt %></h2>
+	<h2>Bathrooms: <%= house.bathroom_cnt %></h2>
+	<h2>Parking Spots: <%= house.parking_spot_cnt %></h2>
+	<h2>Rent: $<%= "ADD" %></h2>
+	<h2>Room Size: <%= room_size_total/house.reviews.length %></h2>
+	<h2>Cleanliness: <%= cleanliness_total/house.reviews.length %></h2>
+	<h2>Overall Rating: <%= overall_total/house.reviews.length %></h2>
 
 	<h1>House Amenities</h1>
-	<% for( i=0; i < attributes.length; i++) { %>
-		<h2> <%= attributes[i].name %> <h2>
+	<% for( i=0; i < house.attributes.length; i++) { %>
+		<h2> <%= house.attributes[i].name %> <h2>
 	<% } %>
 
 	<h1>Landlord</h1>
-	<h2>Name: <%= name %></h2>
-	<% if(phone_num != "NULL"){ %> <h2>Phone Number: <%= phone_num %></h2> <% } %>
-	<% if(email != "NULL"){ %> <h2>Email: <%= email %></h2> <% } %>
-	<% if(website != "NULL"){ %> <h2>Website: <%= website %></h2> <% } %>
-	<h2>Leniency: <%= leniency_rating %></h2>
-	<h2>Fairness: <%= fairness_rating %></h2>
-	<h2>Repairs: <%= repair_rating %></h2>
+	<h2>Name: <%= landlord.name %></h2>
+	<% if(landlord.phone_num != "NULL"){ %> <h2>Phone Number: <%= landlord.phone_num %></h2> <% } %>
+	<% if(landlord.email != "NULL"){ %> <h2>Email: <%= landlord.email %></h2> <% } %>
+	<% if(landlord.website != "NULL"){ %> <h2>Website: <%= landlord.website %></h2> <% } %>
+	<!-- need a better way to do this, put in model? -->
+	<% var leniency_total=0,fairness_total=0,repairs_total=0; 
+		landlord.reviews.forEach(function (review) { 
+			leniency_total+=review.leniency_rating; 
+			fairness_total+=review.fairness_rating; 
+			repairs_total+=review.repair_rating; 
+		}); 
+	%>
+	<h2>Leniency: <%= leniency_total/landlord.reviews.length %> </h2>
+	<h2>Fairness: <%= fairness_total/landlord.reviews.length %> </h2>
+	<h2>Repairs: <%= repairs_total/landlord.reviews.length %></h2>
 
 	<h1>Rent Prices</h1>
-	<% for(i = 0; i < prices.length; i++){ %>
-		<h2>Year: <%= prices[i].year %></h2>
-		<h2>Rent: <%= prices[i].rent %></h2>
-		<h2>Available: <%= prices[i].available ? "Yes" : "No" %></h2>
+	<% for(i = 0; i < house.availability.length; i++){ %>
+		<h2>Year: <%= house.availability[i].year %></h2>
+		<h2>Rent: <%= house.availability[i].rent %></h2>
+		<h2>Available: <%= house.availability[i].available ? "Yes" : "No" %></h2>
 	<% } %>
 </body>
 </HTML>
