@@ -25,7 +25,6 @@ global.db = mongoose.connect('mongodb://'+config.database.user+':'+config.databa
 
 var index = require('./routes/index');
 var house = require('./routes/house');
-var review = require('./routes/review');
 var landlord = require('./routes/landlord');
 
 // view engine setup
@@ -42,7 +41,6 @@ app.use(express.static('public'));
 
 app.use('/', index);
 app.use('/', house);
-app.use('/', review);
 app.use('/', landlord);
 
 // catch 404 and forward to message display

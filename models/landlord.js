@@ -3,14 +3,14 @@ var Schema = mongoose.Schema;
 
 var landlordReviewSchema = new Schema({
   email: String,
-    message: String,
-    date: Date,
-    year_rented: String,
-    leniency_rating: Number,
-    fairness_rating: Number,
-    repair_rating: Number,
-    user_confirmed: Boolean,
-    system_confirmed: Boolean
+  message: String,
+  date: Date,
+  year_rented: String,
+  leniency_rating: Number,
+  fairness_rating: Number,
+  repair_rating: Number,
+  user_confirmed: Boolean,
+  system_confirmed: Boolean
 });
 
 var landlordSchema = new Schema({
