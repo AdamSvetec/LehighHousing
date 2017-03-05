@@ -15,23 +15,15 @@
 </head>
 
 <body>
-	<!-- need a better way to do this, put in model? -->
-	<% var room_size_total=0,cleanliness_total=0,overall_total=0; 
-		house.reviews.forEach(function (review) { 
-			room_size_total+=review.room_size_rating; 
-			cleanliness_total+=review.cleanliness_rating; 
-			overall_total+=review.overall_rating; 
-		}); 
-	%>
 	<h1>House</h1>
 	<h2>Address: <%= house.address %></h2>
 	<h2>Bedrooms: <%= house.bedroom_cnt %></h2>
 	<h2>Bathrooms: <%= house.bathroom_cnt %></h2>
 	<h2>Parking Spots: <%= house.parking_spot_cnt %></h2>
 	<h2>Rent: $<%= "ADD" %></h2>
-	<h2>Room Size: <%= room_size_total/house.reviews.length %></h2>
-	<h2>Cleanliness: <%= cleanliness_total/house.reviews.length %></h2>
-	<h2>Overall Rating: <%= overall_total/house.reviews.length %></h2>
+	<h2>Room Size: <%= house.avg_room_size_rating %></h2>
+	<h2>Cleanliness: <%= house.avg_cleanliness_rating %></h2>
+	<h2>Overall Rating: <%= house.avg_overall_rating %></h2>
 
 	<h1>House Amenities</h1>
 	<% for( i=0; i < house.attributes.length; i++) { %>
@@ -43,17 +35,9 @@
 	<% if(landlord.phone_num != "NULL"){ %> <h2>Phone Number: <%= landlord.phone_num %></h2> <% } %>
 	<% if(landlord.email != "NULL"){ %> <h2>Email: <%= landlord.email %></h2> <% } %>
 	<% if(landlord.website != "NULL"){ %> <h2>Website: <%= landlord.website %></h2> <% } %>
-	<!-- need a better way to do this, put in model? -->
-	<% var leniency_total=0,fairness_total=0,repairs_total=0; 
-		landlord.reviews.forEach(function (review) { 
-			leniency_total+=review.leniency_rating; 
-			fairness_total+=review.fairness_rating; 
-			repairs_total+=review.repair_rating; 
-		}); 
-	%>
-	<h2>Leniency: <%= leniency_total/landlord.reviews.length %> </h2>
-	<h2>Fairness: <%= fairness_total/landlord.reviews.length %> </h2>
-	<h2>Repairs: <%= repairs_total/landlord.reviews.length %></h2>
+	<h2>Leniency: <%= landlord.avg_leniency_rating %> </h2>
+	<h2>Fairness: <%= landlord.avg_fairness_rating %> </h2>
+	<h2>Repairs: <%= landlord.avg_repair_rating %></h2>
 
 	<h1>Rent Prices</h1>
 	<% for(i = 0; i < house.availability.length; i++){ %>
