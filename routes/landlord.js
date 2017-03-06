@@ -19,10 +19,7 @@ router.get('/landlord/:landlord_id', function(req, res, next) {
         winston.log('error',err);
         next(err);
       }
-      page_args = {};
-      page_args.landlord = landlord;
-      page_args.houses = owned_houses;
-      res.render('landlord', page_args);
+      res.render('landlord', { 'landlord': landlord, 'houses': owned_houses});
     });
   });
 });
@@ -37,7 +34,7 @@ router.get('/landlord/:landlord_id/review', function(req, res, next) {
     if(landlord === null){ 
       next(); 
     }
-    res.render('review', { stars: ['Leniency', 'Fairness', 'Repairs'], title: landlord.name, landlord_id: req.params.landlord_id });
+    res.render('review', { stars: [{title: 'Leniency', name: 'leniency'}, {title: 'Fairness', name: 'fairness'}, {title: 'Repairs', name: 'repairs'}], title: landlord.name });
   });
 });
 
@@ -45,7 +42,7 @@ router.get('/landlord/:landlord_id/review', function(req, res, next) {
 router.post('/landlord/:landlord_id/review', function(req, res, next) {
   //Error and submission rules check
   //TODO
-  var review  = { email: req.body.email, message: req.body.message, date: new Date(), year_rented: req.body.year, leniency_rating: req.body.Leniency, fairness_rating: req.body.Fairness, repair_rating: req.body.Repairs, user_confirmed: 0, system_confirmed: 0};
+  var review  = { email: req.body.email, message: req.body.message, date: new Date(), year_rented: req.body.year, leniency_rating: req.body.leniency, fairness_rating: req.body.fairness, repair_rating: req.body.repairs, user_confirmed: 0, system_confirmed: 0};
   Landlord.findOne({ '_id': req.params.landlord_id }, function(err, landlord){
     if(err) { 
       winston.log('error', err); 

@@ -19,11 +19,7 @@ router.get('/house/:house_id', function(req, res, next) {
         winston.log('error',err);
         next(err);
       }
-      page_args = {};
-      page_args.house = house;
-      page_args.landlord = landlord;
-      page_args.year = req.query.year;
-      res.render('house', page_args);
+      res.render('house', { 'house': house, 'landlord': landlord, 'year': req.query.year });
     });
   });
 });
@@ -38,7 +34,7 @@ router.get('/house/:house_id/review', function(req, res, next) {
     if(house === null){ 
       next(); 
     }
-    res.render('review', { stars: ['Room Size', 'Cleanliness', 'Overall Rating'], title: house.address, house_id: req.params.house_id });
+    res.render('review', { stars: [{title: 'Room Size', name: 'room_size'}, {title: 'Cleanliness', name: 'cleanliness'}, {title: 'Overall Rating', name: 'overall_rating'}], title: house.address });
   });
 });
 
@@ -46,7 +42,7 @@ router.get('/house/:house_id/review', function(req, res, next) {
 router.post('/house/:house_id/review', function(req, res, next) {
   //Error and submission rules check
   //TODO
-  var review  = { email: req.body.email, message: req.body.message, date: new Date(), year_rented: req.body.year, room_size_rating: req.body['Room Size'], cleanliness_rating: req.body.Cleanliness, overall_rating: req.body['Overall Rating'], user_confirmed: 0, system_confirmed: 0};
+  var review  = { email: req.body.email, message: req.body.message, date: new Date(), year_rented: req.body.year, room_size_rating: req.body.room_size, cleanliness_rating: req.body.cleanliness, overall_rating: req.body.overall_rating, user_confirmed: 0, system_confirmed: 0};
   
   House.findOne({ '_id': req.params.house_id }, function(err, house){
     if(err) { 

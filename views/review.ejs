@@ -21,9 +21,9 @@
   		Year Rented:<br>
   		<input type="text" name="year" required>ex. 2016-2017<br>
   		<% for(i=0; i<stars.length; i++) { %>
-  			<%= stars[i] %>:<br>
-  			<div class="stars" id="<%=stars[i]%>"></div><br>
-  			<input type="hidden" name="<%=stars[i]%>" value="1">
+  			<%= stars[i].title %>:<br>
+  			<div class="stars" id="<%=stars[i].name%>"></div><br>
+  			<input type="hidden" name="<%=stars[i].name%>" value="1">
   		<% } %>
   		Review:<br>
   		<textarea name="message" rows="10" cols="30" required></textarea><br>
@@ -33,11 +33,11 @@
 <script>
 	$(function () {
 	<% for(i=0; i < stars.length; i++) { %>
- 		$("#<%=stars[i]%>").rateYo({
+ 		$("#<%=stars[i].name%>").rateYo({
  			rating: 1,
     		fullStar: true,
  			onSet: function (rating, rateYoInstance) {
- 				document.forms["review_form"]["<%=stars[i]%>"].value = rating;
+ 				document.forms["review_form"]["<%=stars[i].name%>"].value = rating;
     		}
   		});
 	<% } %>
