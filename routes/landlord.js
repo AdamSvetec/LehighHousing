@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var winston = require('winston');
+var nodemailer = require('nodemailer');
+var transporter = require('../config').transporter;
 var Landlord = require('../models/landlord');
 var House = require('../models/house');
 

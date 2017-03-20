@@ -37,15 +37,18 @@ var houseSchema = new Schema({
 
 /* Update rating averages */
 houseSchema.pre('save', function (next) {
-  var room_size_total=0, cleanliness_total=0, overall_total=0; 
+  var room_size_total=0, cleanliness_total=0, overall_total=0, validated_review_count=0; 
   this.reviews.forEach(function (review) { 
-    room_size_total+=review.room_size_rating; 
-    cleanliness_total+=review.cleanliness_rating; 
-    overall_total+=review.overall_rating; 
+    if(review.system_confirmed){
+      room_size_total+=review.room_size_rating; 
+      cleanliness_total+=review.cleanliness_rating; 
+      overall_total+=review.overall_rating;
+      validated_review_count++;
+    }
   });
-  this.avg_room_size_rating = this.reviews.length > 0 ? room_size_total / this.reviews.length : 0;
-  this.avg_cleanliness_rating = this.reviews.length > 0 ? cleanliness_total / this.reviews.length : 0;
-  this.avg_overall_rating = this.reviews.length > 0 ? overall_total / this.reviews.length : 0;
+  this.avg_room_size_rating = validated_review_count > 0 ? room_size_total / validated_review_count : 0;
+  this.avg_cleanliness_rating = validated_review_count > 0 ? cleanliness_total / validated_review_count : 0;
+  this.avg_overall_rating = validated_review_count > 0 ? overall_total / validated_review_count : 0;
   next();
 });
 
