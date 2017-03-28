@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <HTML>
+	<head>
+		<link rel="stylesheet" href="/stylesheets/common.css">
 
-<head>
-	<script src="/js/packages/jquery-3.1.1.min.js"></script>
+		<!-- libraries -->
+		<script src="/js/packages/jquery.rateyo.min.js"></script>
+		<link rel="stylesheet" href="/stylesheets/packages/jquery.rateyo.min.css">
+		<script src="/js/packages/jquery-3.1.1.min.js"></script>
 
-	<!-- Star rating libraries -->
-	<script src="/js/packages/jquery.rateyo.min.js"></script>
-  	<link rel="stylesheet" href="/stylesheets/packages/jquery.rateyo.min.css">
-  	
-  	<title><%= landlord.name %></title>
-</head>
-<body>
-	<h1>Landlord</h1>
-	<h2>Name: <%= landlord.name %></h2>
-	<% if(landlord.phone_num){ %> <h2>Phone Number: <%= landlord.phone_num %></h2> <% } %>
-	<% if(landlord.email){ %> <h2>Email: <%= landlord.email %></h2> <% } %>
-	<% if(landlord.website){ %> <h2>Website: <%= landlord.website %></h2> <% } %>
-	<h2>Leniency: <%= landlord.avg_leniency_rating %> </h2>
-	<h2>Fairness: <%= landlord.avg_fairness_rating %> </h2>
-	<h2>Repairs: <%= landlord.avg_repair_rating %></h2>
+		<title><%= landlord.name %></title>
+	</head>
+	<body>
+		<div id="container">
+			<%- include partials/header %>
+			<h1>Landlord</h1>
+			<h2>Name: <%= landlord.name %></h2>
+			<% if(landlord.phone_num){ %> <h2>Phone Number: <%= landlord.phone_num %></h2> <% } %>
+			<% if(landlord.email){ %> <h2>Email: <%= landlord.email %></h2> <% } %>
+			<% if(landlord.website){ %> <h2>Website: <%= landlord.website %></h2> <% } %>
+			<h2>Leniency: <%= landlord.avg_leniency_rating %> </h2>
+			<h2>Fairness: <%= landlord.avg_fairness_rating %> </h2>
+			<h2>Repairs: <%= landlord.avg_repair_rating %></h2>
 
-	<h1>Houses:</h1>
-	<% for(i=0; i < houses.length; i++){ %>
-		<h2><%= houses[i].address %></h2>
-		<h3>Bedrooms: <%= houses[i].bedroom_cnt %></h3>
-		<h3>Bathrooms: <%= houses[i].bathroom_cnt %></h3>
-		<h3>Parking Spots: <%= houses[i].parking_spot_cnt %></h3>
-		<h3>Room Size: <%= houses[i].avg_room_size_rating %></h3>
-		<h3>Cleanliness: <%= houses[i].avg_cleanliness_rating %></h3>
-		<h3>Overall Rating: <%= houses[i].avg_overall_rating %></h3>
-	<% } %>
-</body>
+			<h1>Houses:</h1>
+			<% for(i=0; i < houses.length; i++){ %>
+				<h2><%= houses[i].address %></h2>
+				<h3>Bedrooms: <%= houses[i].bedroom_cnt %></h3>
+				<h3>Bathrooms: <%= houses[i].bathroom_cnt %></h3>
+				<h3>Parking Spots: <%= houses[i].parking_spot_cnt %></h3>
+				<h3>Room Size: <%= houses[i].avg_room_size_rating %></h3>
+				<h3>Cleanliness: <%= houses[i].avg_cleanliness_rating %></h3>
+				<h3>Overall Rating: <%= houses[i].avg_overall_rating %></h3>
+			<% } %>
+			<%- include partials/footer %>
+		</div>
+	</body>
 </HTML>

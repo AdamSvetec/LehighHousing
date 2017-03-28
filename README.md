@@ -5,7 +5,7 @@ nodejs installation:
 https://nodejs.org/en/download/
 
 running	app:
-npm install (first time)
+npm install (please let me know if I'm missing a package in package.json)
 npm start
 
 aws access:

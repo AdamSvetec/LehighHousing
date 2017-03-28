@@ -2,6 +2,7 @@
 <HTML>
   <head>
     <link rel="stylesheet"  href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/common.css">
     <script src="/js/packages/jquery-3.1.1.min.js"></script>
     
     <script src="/js/packages/jquery.rateyo.min.js"></script>
@@ -12,26 +13,32 @@
     <title>Lehigh U Housing</title>
   </head>
   <body>
-    <%- include partials/header %>
-    <div id="bedroom_filter">
-      <label for="bedroom-spinner">Bedrooms:</label>
-      <input id="bedroom-spinner" name="value" value="5">
+    <div id="container">
+      <%- include partials/header %>
+      <div id="filter_bar">
+        <div id="bedroom_filter">
+          <label for="bedroom-spinner">Bedrooms:</label>
+          <input id="bedroom-spinner" name="value" value="5">
+        </div>
+        <div id="price_filter">
+          <label for="amount" id="price_label">Price range:</label>
+          <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+          <div id="slider-range"></div>
+        </div>
+        <div class="year_filter">
+          <label for="year_selection">Year:</label>
+          <select name="year_selection" id="year_selection">
+            <% var year = new Date().getFullYear(); %>
+            <option selected="selected"><%=""+(year)+"-"+(year+1)%></option>
+            <% for (var i = 1; i < 3; i++) { %>
+              <option><%=""+(year+i)+"-"+(year+i+1)%></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <div id="map"></div>
+      <%- include partials/footer %>
     </div>
-    <div id="price_filter">
-      <label for="amount">Price range:</label>
-      <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-      <div id="slider-range"></div>
-    </div>
-    <div class="year_filter">
-      <label for="year_selection">Year:</label>
-      <select name="year_selection" id="year_selection">
-        <option selected="selected">2017-2018</option>
-        <option>2018-2019</option>
-        <option>2019-2020</option>
-      </select>
-    </div>
-    <div id="map"></div>
-    <%- include partials/footer %>
   </body>
   <script src="/js/index.js"></script>
 </HTML>

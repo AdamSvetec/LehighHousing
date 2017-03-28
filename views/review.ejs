@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <HTML>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/common.css">
 
-<head>
-	<script src="/js/packages/jquery-3.1.1.min.js"></script>
-	<script src="/js/packages/validator.min.js"></script>
-	<script src="/js/review.js"></script>
+    <!-- libraries -->
+    <script src="/js/packages/jquery-3.1.1.min.js"></script>
+    <script src="/js/packages/jquery.rateyo.min.js"></script>
+    <script src="/js/packages/validator.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/packages/jquery.rateyo.min.css">
 
-	<!-- Star rating libraries -->
-	<script src="/js/packages/jquery.rateyo.min.js"></script>
-  	<link rel="stylesheet" href="/stylesheets/packages/jquery.rateyo.min.css">
-  	
-  	<title>Review <%= title %></title>
-</head>
-<body>
-	<h1>Review <%= title %> </h1>
-	<form method="post" onsubmit="return validateForm()" name="review_form">
-  		Email:<br>
-  		<input type="email" name="email" required><br>
-  		Year Rented:<br>
-  		<input type="text" name="year" required>ex. 2016-2017<br>
-  		<% for(i=0; i<stars.length; i++) { %>
-  			<%= stars[i].title %>:<br>
-  			<div class="stars" id="<%=stars[i].name%>"></div><br>
-  			<input type="hidden" name="<%=stars[i].name%>" value="1">
-  		<% } %>
-  		Review:<br>
-  		<textarea name="message" rows="10" cols="30" required></textarea><br>
-      <input type="submit" value="Submit">
-	</form>
-</body>
-<script>
-	$(function () {
-	<% for(i=0; i < stars.length; i++) { %>
- 		$("#<%=stars[i].name%>").rateYo({
- 			rating: 1,
-    		fullStar: true,
- 			onSet: function (rating, rateYoInstance) {
- 				document.forms["review_form"]["<%=stars[i].name%>"].value = rating;
-    		}
-  		});
-	<% } %>
-	});
-</script>
+    <title>Review <%= title %></title>
+  </head>
+  <body>
+    <div id="container">
+      <%- include partials/header %>
+      <h1>Review <%= title %> </h1>
+      <form method="post" onsubmit="return validateForm()" name="review_form">
+        Email:<br>
+        <input type="email" name="email" required><br>
+        Year Rented:<br>
+        <input type="text" name="year" required>ex. 2016-2017<br>
+        <% for(i=0; i<stars.length; i++) { %>
+          <%= stars[i].title %>:<br>
+          <div class="stars" id="<%=stars[i].name%>"></div><br>
+          <input type="hidden" name="<%=stars[i].name%>" value="1">
+        <% } %>
+        Review:<br>
+        <textarea name="message" rows="10" cols="30" required></textarea><br>
+        <input type="submit" value="Submit">
+      </form>
+      <%- include partials/footer %>
+    </div>
+  </body>
+  <script src="/js/review.js"></script>
+  <script>
+  $(function () {
+    <% for(i=0; i < stars.length; i++) { %>
+      $("#<%=stars[i].name%>").rateYo({
+        rating: 1,
+        fullStar: true,
+        onSet: function (rating, rateYoInstance) {
+          document.forms["review_form"]["<%=stars[i].name%>"].value = rating;
+        }
+      });
+    <% } %>
+  });
+  </script>
 </HTML>

@@ -1,69 +1,35 @@
-table, th, td {
-    border: 1px solid black;
+#filter_bar{
+    width: 100%;
+    margin-bottom: 10px;
+    text-align:center;
 }
 
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#bedroom_filter, #price_filter, #year_filter{
+    float: left;
+    width: 33%;
 }
 
-a {
-  color: #00B7FF;
+#bedroom-spinner{
+    width: 20px;
 }
 
-/* Dropdown Button
-nice blue = #124E78
-nice cream = #F0F0C9
-nice redish color = #D74E09
-
-*/
-.dropbtn {
-    background-color: #623100;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+#map {
+    height: 400px;
+    width: 100%;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+#slider-range{
+    height: 0.4em !important;
+    margin-top: 5px;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
+.ui-slider-handle { 
+    height: 0.9em !important;
+}
+.ui-widget-content{
+    background-color: #f6f6f6 !important;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+#year_selection-button{
+    width: 110px;
 }
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
- #map {
-        height: 300px;
-        width: 50%;
-       }
-
-.ui-slider-horizontal {
-    height: .8em;
-}
-

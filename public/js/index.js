@@ -1,73 +1,59 @@
-var max_bedroom_count = 7;
 var rent_max = 1000;
 var rent_min = 0;
-var year = "2017-2018";
 
 var map;
 var marker_holders = [];
 var InfoWindow;
-var gmaps_callback = function(){};
 
+// on load function
 $( function() {
 	$( "#bedroom-spinner" ).spinner({
       spin: function( event, spinner ) {
-        if ( spinner.value <= 1 ) {
-          $( this ).spinner( "value", 1 );
-          return false;
-        } else if ( spinner.value >= max_bedroom_count ) {
-          $( this ).spinner( "value", max_bedroom_count );
-          return false;
-        }
         $( this ).spinner( "value", spinner.value );
         updateData();
-      }
+      },
+      min: 1
     });
 	$( "#year_selection" ).selectmenu({
 		change: function( event, ui ) { 
 			updateData();
 		}
 	});
-    $( "#slider-range" ).slider({
-      range: true,
-      min: rent_min,
-      max: rent_max,
-      values: [ 200, 700 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-      },
-      stop: function(event, ui) {
-        updateData();
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-    gmaps_callback = function() {   // redefine callback function
-        var lehigh_loc = {lat: 40.6069, lng: -75.3783};
-		map = new google.maps.Map($("#map")[0], {
-			zoom: 14,
-			center: lehigh_loc
-		});
-		updateData();
-	}   
-    add_google_maps_script(); //trigger the load scripts 
-  } );
+  $( "#slider-range" ).slider({
+    range: true,
+    min: rent_min,
+    max: rent_max,
+    values: [ rent_min, rent_max ],
+    slide: function( event, ui ) {
+      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+    },
+    stop: function(event, ui) {
+      updateData();
+    }
+  });
+  $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  add_google_maps_script(); //trigger the load of google maps api scripts 
+});
 
+// whenever values in filter are changes, this is triggered to update map
 function updateData(){
 	for (var i = 0; i < marker_holders.length; i++) {
-          marker_holders[i].marker.setMap(null);
-    }
-    marker_holders = [];
+    marker_holders[i].marker.setMap(null);
+  }
+  marker_holders = [];
 	var filter = {"bedroom_cnt":$("#bedroom-spinner").spinner("value"), "rent_high":$("#slider-range").slider("values", 1), "rent_low":$("#slider-range").slider("values", 0), "year":$( "#year_selection" ).val()};
-	$.get( '/filter', filter, function(rows) { 
-		for(i=0; i < rows.length; i++){
-			addMarker(rows[i]);
+	$.get( '/filter', filter, function(houses) { 
+		for(i=0; i < houses.length; i++){
+			addMarker(houses[i]);
 		}
 	});
 }
 
-function addMarker(row) {
+// adds house to map
+function addMarker(house) {
 	var marker_holder = {};
 	// Building marker
-	var location = {lat:row.lat,lng:row.lng};
+	var location = {lat:house.lat, lng:house.lng};
 	marker_holder.marker = new google.maps.Marker({
 		position: location,
 		map: map
@@ -75,11 +61,11 @@ function addMarker(row) {
 
 	// Info Window Content
 	marker_holder.infoWindowContent = '<div class="info_content">' +
-	'<h3><a href="house/'+row._id+'?year='+year+'" target="_blank">'+row.address+'</a></h3>' +
-	'<div>Rent: '+row.availability.find( availability => availability.year == "2017-2018").rent+'</div>' +
+	'<h3><a href="house/'+house._id+'?year='+$( "#year_selection" ).val()+'" target="_blank">'+house.address+'</a></h3>' +
+	'<div>Rent: '+house.availability.find( availability => availability.year == $( "#year_selection" ).val()).rent+'</div>' +
 	'<div><span id="starsHouse" style="display: inline-block"></span></div>' +
 	'</div>';
-	marker_holder.house_rating = row.avg_overall_rating;
+	marker_holder.house_rating = house.avg_overall_rating;
 	marker_holders.push(marker_holder);
 	var index = marker_holders.length - 1;
 	infoWindow = new google.maps.InfoWindow();
@@ -96,6 +82,17 @@ function addMarker(row) {
 	})(marker_holder.marker, index));	
 }
 
+// callback function for load of google maps scripts
+function gmaps_callback() {
+  var lehigh_loc = {lat: 40.6069, lng: -75.3783};
+  map = new google.maps.Map($("#map")[0], {
+    zoom: 15,
+    center: lehigh_loc
+  });
+  updateData();
+}
+
+// adds script to dom to trigger google maps scripts load
 function add_google_maps_script() {
 	var script = document.createElement("script");
     script.type = "text/javascript";

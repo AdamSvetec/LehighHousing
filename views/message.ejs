@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/common.css">
   </head>
   <body>
-    <h1><%= message %></h1>
-    <h2><%= error.status ? error.status : "" %></h2>
+  	<div id="container">
+      <%- include partials/header %>
+      <h1><%= message %></h1>
+      <h2><%= error.status ? error.status : "" %></h2>
+      <%- include partials/footer %>
+    </div>
   </body>
 </html>
