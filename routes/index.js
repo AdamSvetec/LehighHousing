@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 /* Get houses that match query options */
 router.get('/filter', function(req, res, next) {
-  House.find({ 'bedroom_cnt': req.query.bedroom_cnt, 'bathroom_cnt':req.query.bathroom_cnt, 'availability': {$elemMatch: { 'year': req.query.year, 'rent': {$lte:req.query.rent_high}, 'available': true }}}, function(err, houses){
+  House.find({ 'bedroom_cnt': req.query.bedroom_cnt, 'availability': {$elemMatch: { 'year': req.query.year, 'rent': {$lte:req.query.rent_high, $gte:req.query.rent_low}, 'available': true }}}, function(err, houses){
     if(err){
       winston.log('error',err);
       next(err);
