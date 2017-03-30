@@ -33,3 +33,7 @@
 #year_selection-button{
     width: 110px;
 }
+
+.info_pane_stars, .info_pane_price{
+    float: left;
+}

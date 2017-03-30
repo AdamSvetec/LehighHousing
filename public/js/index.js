@@ -62,8 +62,8 @@ function addMarker(house) {
 	// Info Window Content
 	marker_holder.infoWindowContent = '<div class="info_content">' +
 	'<h3><a href="house/'+house._id+'?year='+$( "#year_selection" ).val()+'" target="_blank">'+house.address+'</a></h3>' +
-	'<div>Rent: '+house.availability.find( availability => availability.year == $( "#year_selection" ).val()).rent+'</div>' +
-	'<div><span id="starsHouse" style="display: inline-block"></span></div>' +
+	'<div class="info_pane_info"><div class="info_pane_price">$'+house.availability.find( availability => availability.year == $( "#year_selection" ).val()).rent+'</div>' +
+	'<div><span class="info_pane_stars" style="display: inline-block"></span></div></div>' +
 	'</div>';
 	marker_holder.house_rating = house.avg_overall_rating;
 	marker_holders.push(marker_holder);
@@ -77,7 +77,7 @@ function addMarker(house) {
         	}
         	infoWindow.setContent(marker_holders[index].infoWindowContent);
         	infoWindow.open(map, marker);
-        	$(function () { $("#starsHouse").rateYo({ rating: marker_holders[index].house_rating, starWidth: "15px" });});
+        	$(function () { $(".info_pane_stars").rateYo({ rating: marker_holders[index].house_rating, starWidth: "15px", readOnly: true });});
         }
 	})(marker_holder.marker, index));	
 }
