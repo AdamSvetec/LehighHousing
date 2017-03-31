@@ -28,8 +28,23 @@
 			<% for( i=0; i < house.attributes.length; i++) { %>
 			   <tr><td><%= house.attributes[i].name %></td></tr>
 			   <% } %>
-			 
+			<tr><td><h2>Landlord</h2></td><td></td></tr>
+			<tr><td>Name</td><td><%= landlord.name %></td></tr>
+			<% if(landlord.phone_num != "NULL"){ %> <tr><td>Phone Number</td><td><%= landlord.phone_num %></td></tr> <% } %>
+                        <% if(landlord.email != "NULL"){ %> <tr><td>Email</td><td> <%= landlord.email %></td></tr> <% } %>
+                        <% if(landlord.website != "NULL"){ %> <tr><td>Website</td><td> <%= landlord.website %></td></tr> <% } %>
+			<tr><td>Leniency</td><td><%= landlord.avg_leniency_rating %></td></tr>
+			<tr><td>Fairness</td><td><%= landlord.avg_fairness_rating %></td></tr>
+                        <tr><td>Repairs</td><td><%= landlord.avg_repair_rating %></td></tr>
+      			<tr><td><h2>Rent Prices</h2></td><td></td></tr>
+			<% for(i = 0; i < house.availability.length; i++){ %>
+                                <tr><td>Year</td><td> <%= house.availability[i].year %></td></tr>
+				<tr><td>Rent</td><td> <%= house.availability[i].rent %></td></tr>
+                                <tr><td>Available</td><td> <%= house.availability[i].available ? "Yes" : "No" %><% } %></td></tr>
+                                
+                        <%- include partials/footer %>
 			</table>
+                <h1>Delete the shit below?</h1>
 			<h1>House</h1>
 			<h2>Address: <%= house.address %></h2>
 			<h2>Bedrooms: <%= house.bedroom_cnt %></h2>
