@@ -13,7 +13,8 @@
 	<body>
 		<div id="container">
 			<%- include partials/header %>
-			<h2>House Details </h2>
+
+			 <h2>House Details </h2>
 			<ul>
 			  <li><%= house.bedroom_cnt %> Bedrooms</li>
 			  <li><%= house.bathroom_cnt %> Bathrooms</li>
@@ -27,12 +28,7 @@
                            <% } %>
 			  
 			</ul>
-			<h2>House Ratings</h2>
-			<table>
-			  <tr><td>Room Size</td><td><%= house.avg_room_size_rating %></td></tr>
-                            <tr><td>Cleanliness</td><td><%= house.avg_cleanliness_rating %></td></tr>
-                            <tr><td>Overall Rating</td><td><%= house.avg_overall_rating %></td></tr>
-			  </table>
+
 
 			<h2>Landlord: <%= landlord.name %></h2>
 			<ul>
@@ -40,21 +36,35 @@
                         <% if(landlord.email != "NULL"){ %> <li>Email: <%= landlord.email %></li> <% } %>
                         <% if(landlord.website != "NULL"){ %> <li>Website:  <%= landlord.website %></li> <% } %>
 			</ul>
+
+<div id="container2">
+			<div id="left">
+			<h2>House Ratings</h2>
+                        <table style="width:150px">
+                          <tr><td>Room Size</td><td><%= house.avg_room_size_rating %></td></tr>
+                            <tr><td>Cleanliness</td><td><%= house.avg_cleanliness_rating %></td></tr>
+                            <tr><td>Overall Rating</td><td><%= house.avg_overall_rating %></td></tr>
+                          </table>
+			</div>
+			<div id="center">
 			<h2>Landlord Ratings</h2>
 			<table>
 			  <tr><td>Leniency</td><td><%= landlord.avg_leniency_rating %></td></tr>
                           <tr><td>Fairness</td><td><%= landlord.avg_fairness_rating %></td></tr>
                           <tr><td>Repairs</td><td><%= landlord.avg_repair_rating %></td></tr>
 			</table>
+			</div>
+			<div id="right">
 			<h2>Rent Prices</h2>
-			<table>
+			<table styple="padding-right:0px">
 			  <tr><td>Year</td><td>Rent</td><td>Abailability</td></tr>
 			   <% for(i = 0; i < house.availability.length; i++){ %>
 			  <tr><td> <%= house.availability[i].year %></td>
                                 <td> <%= house.availability[i].rent %></td>
                                 <td> <%= house.availability[i].available ? "Yes" : "No" %><% } %></td></tr>
 			</table>
- 
+			</div>
+ </div>
 		</div>
 	</body>
 </HTML>
