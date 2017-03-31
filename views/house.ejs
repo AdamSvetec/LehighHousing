@@ -20,6 +20,15 @@
 			    <tr><td>Bedrooms</td><td><%= house.bedroom_cnt %></td></tr>
 			    <tr><td>Bathrooms</td><td><%= house.bathroom_cnt %></td></tr>
 			    <tr><td>Parking Spots</td><td><%= house.parking_spot_cnt %></td></tr>
+			    <tr><td>Rent</td><td>"Add"</td></tr>
+			    <tr><td>Room Size</td><td><%= house.avg_room_size_rating %></td></tr>
+			    <tr><td>Cleanliness</td><td><%= house.avg_cleanliness_rating %></td></tr>
+			    <tr><td>Overall Rating</td><td><%= house.avg_overall_rating %></td></tr>
+			    <tr><td><h2>House Amenities</h2></td><td></td></tr>
+			<% for( i=0; i < house.attributes.length; i++) { %>
+			   <tr><td><%= house.attributes[i].name %></td></tr>
+			   <% } %>
+			 
 			</table>
 			<h1>House</h1>
 			<h2>Address: <%= house.address %></h2>
