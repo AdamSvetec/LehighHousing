@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<HTML>
+
+<head>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet"  href="/stylesheets/index.css">
+	<script src="/js/jquery-3.1.1.min.js"></script>
+	<script src="/js/common.js"></script>
+  <title>LehighU Housing</title>
+  <h1 align="center">LehighU Housing</h1>
+
+</head>
+
+<script>
+   
+window.onload = function() {
+$(list).hide();
+};
+</script>
+
+  <head>
+   <style>
+
+
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+    </style>
+  </head>
+  <body>
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Bedrooms</button>
+  <div id="myDropdown" class="dropdown-content">
+   <button id="bed1" onclick="bedroom_cnt = 1;updateData()">1<br>
+  <button id="bed2" onclick="bedroom_cnt = 2;updateData();">2<br>
+   <button id="bed3" onclick="bedroom_cnt = 3;updateData()">3<br>
+   <button id="bed4" onclick="bedroom_cnt = 4;updateData()">4<br>
+     <button id="bed5" onclick="bedroom_cnt = 5;updateData()">5+<br>
+  </div>
+</div>
+<div class="dropdown">
+  <button onclick="myFunctionBaths()" class="dropbtn">Bathrooms</button>
+    <div id="myDropdown3" class="dropdown-content">
+      <button id="bathroom1" onclick="bathroom_cnt = 1;updateData()">1<br>
+      <button id="bathroom2" onclick="bathroom_cnt = 2;updateData()">2<br>
+      <button id="bathroom3" onclick="bathroom_cnt = 3;updateData()">3<br>
+  </div>
+</div>
+<div class="dropdown">
+  <button onclick="dropDown2()" class="dropbtn">Rent Per Person</button>
+  <div id="myDropdown2" class="dropdown-content">
+
+    <button  onclick="rent_low  = 0; rent_high=200; updateData()"><200<br>
+  <button  onclick="rent_low  = 200; rent_high=400; updateData()">200-400<br>
+    <button onclick="rent_low  = 400; rent_high=600; updateData()">400-600<br>
+   <button  onclick="rent_low  = 600; rent_high=100000; updateData()">600+<br>
+   
+
+  </div>
+</div>
+
+<div class="dropdown">
+  <button onclick="myFunctionYear()" class="dropbtn">Year</button>
+  <div id="myDropdown4" class="dropdown-content">
+    <button  onclick="year = '2016-2017';updateData()">2016-2017<br>
+  <button  onclick="year = '2017-2018';updateData()">2017-2018<br>
+
+
+  </div>
+</div>
+
+
+<div class="dropdown">
+<button onclick="clearFilter()">Clear Filer</button>
+</div>
+<div>
+<label class="switch">
+  <input type="checkbox" onclick="alertFunc1()">
+  <div class="slider round"></div>
+</label>
+</div>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <div id="list">
+      <table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+</table>
+    </div>
+    <script async defer 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvh74ExLCdpPPcfsvN3YfxEfz4NlosASs&callback=initMap">
+    </script>
+  
+
+</body>
+</HTML>
