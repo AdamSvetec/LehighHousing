@@ -11,3 +11,29 @@
     margin: auto;
     color: rgba(80,45,14,0.9);
 }
+
+table {
+color: #333;
+font-family: Helvetica, Arial, sans-serif;
+width: 200px;
+border-collapse:
+collapse; border-spacing: 0;
+}
+
+td, th {
+border: 1px solid transparent; /* No more visible border */
+height: 30px;
+transition: all 0.3s; /* Simple transition for hover effect */
+}
+
+th {
+background: #DFDFDF; /* Darken header a bit */
+font-weight: bold;
+}
+
+td {
+background: #FAFAFA;
+text-align: center;
+}
+
+td, th, tr { border: 1px solid #CCC; } /* Add borders to cells */
