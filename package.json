@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 LOG_LEVEL=silly node ./server.js",
+    "start": "PORT=3000 LOG_LEVEL=silly node $NODE_DEBUG_OPTION ./server.js",
     "launch": "PORT=80 NODE_ENV=production LOG_LEVEL=info forever start ./server.js",
     "//": "needs arguments: --db <db_name> --collection <name> --file <path_to_file> -u <username> -p <password>",
     "upload-data": "mongoimport --drop --jsonArray"

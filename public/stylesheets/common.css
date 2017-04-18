@@ -3,7 +3,17 @@
 }
 
 #footer_partial{
+    margin-top: 20px;
 	text-align: center;
+}
+
+.footer_item{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+a:link, a:visited{
+    color: rgba(80,45,14,0.9);
 }
 
 #container {
