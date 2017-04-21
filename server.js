@@ -74,6 +74,8 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+aggregateData();
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -140,4 +142,28 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+}
+
+/* used to ensure all middleware on house and landlord is called before app is initialized */
+function aggregateData(){
+    var House = require('./models/house.js');
+    House.find({},function(err, houses){
+        houses.forEach(function(house){
+            house.save(function(err) {
+                if (err) {
+                    winston.log('error', err);
+                }
+            });
+        });
+    });
+    var Landlord = require('./models/landlord.js');
+    Landlord.find({},function(err, landlords){
+        landlords.forEach(function(landlord){
+            landlord.save(function(err) {
+                if (err) {
+                    winston.log('error', err);
+                }
+            });
+        });
+    });
 }
